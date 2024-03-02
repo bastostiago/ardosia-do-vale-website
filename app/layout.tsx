@@ -16,7 +16,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + " bg-[url('/body-bg.png')]"}>{children}</body>
+      <body
+        className={inter.className + " bg-[url('/body-bg.png')] min-h-screen"}
+      >
+        <div className="flex justify-center">
+          <main className="bg-white lg:w-8/12 w-11/12 md:mt-8 mt-4 shadow-md">
+            {children}
+          </main>
+        </div>
+      </body>
     </html>
   );
 }
