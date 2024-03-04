@@ -51,13 +51,13 @@ const menu: MenuItem[] = [
 
 export default function navbar() {
   return (
-    <div className="navbar bg-base-100 border-gray-200 border-t-[1px]">
+    <div className="navbar bg-base-100 border-gray-200 border-t-[1px] h-0">
       <div className="navbar">
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             {menu.map((item, index) =>
               item.subItems ? (
-                <li key={index}>
+                <li key={index} className="hover:text-[#e58b00]">
                   <details>
                     <summary>{item.description}</summary>
                     <ul className="p-2">
@@ -70,7 +70,7 @@ export default function navbar() {
                   </details>
                 </li>
               ) : (
-                <li key={index}>
+                <li key={index} className="hover:text-[#e58b00]">
                   <Link href={item.path}>{item.description}</Link>
                 </li>
               )
