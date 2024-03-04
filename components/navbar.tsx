@@ -60,7 +60,7 @@ export default function navbar() {
                 <li key={index} className="hover:text-[#e58b00]">
                   <details>
                     <summary>{item.description}</summary>
-                    <ul className="p-2">
+                    <ul className="p-2 z-[1]">
                       {item.subItems.map((subItem, subIndex) => (
                         <li key={subIndex}>
                           <Link href={subItem.path}>{subItem.description}</Link>
