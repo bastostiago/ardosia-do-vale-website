@@ -2,29 +2,19 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { Philosopher } from "next/font/google";
+import Link from "next/link";
+import { Slide } from "@/models/website";
 
-export default function Carousel() {
+const philosopher = Philosopher({ weight: "400", subsets: ["latin"] });
+
+interface CarouselProps {
+  slides: Slide[];
+}
+
+export default function Carousel({ slides }: CarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const slides = [
-    {
-      image: "/quem_somos_principal-1038x460.jpg",
-      path: "",
-    },
-    {
-      image: "/pedra_ardosia-1038x460.jpg",
-      path: "",
-    },
-    {
-      image: "/trombudo_central1-1038x460.jpg",
-      path: "",
-    },
-    {
-      image: "/produtos-1038x460.jpg",
-      path: "",
-    },
-  ];
 
   useEffect(() => {
     const interval = setInterval(goToNextSlide, 10000); // 10000 ms = 10 segundos
@@ -54,22 +44,36 @@ export default function Carousel() {
 
   return (
     <div className="carousel w-full overflow-hidden relative">
-      <div
-        id="slide"
-        className={`carousel-item w-full transition-opacity duration-500 ${
-          !isTransitioning ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <Image
-          alt=""
-          src={slides[currentSlide].image}
-          className="w-full"
-          width={1500}
-          height={1500}
-        />
-      </div>
+      <Link href={slides[currentSlide].path} className="w-full">
+        <div
+          id="slide"
+          className={`carousel-item w-full transition-opacity duration-500 ${
+            !isTransitioning ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            alt=""
+            src={slides[currentSlide].image}
+            className="w-full"
+            width={1500}
+            height={1500}
+          />
+          <div className="hidden lg:flex absolute justify-end transform bottom-4 left-5 right-20 top-1/2 ">
+            <div className="flex flex-col items-end">
+              <div className="flex bg-[#e58b00] w-60 h-14 items-center justify-center text-white text-2xl">
+                <div className={philosopher.className}>
+                  {slides[currentSlide].title}
+                </div>
+              </div>
+              <div className="flex bg-gray-700 opacity-80 w-96 h-36 items-center justify-center text-white text-sm mt-1 p-6">
+                {slides[currentSlide].text}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Link>
 
-      <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <div className="hidden md:flex absolute justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
         <button className="btn btn-circle" onClick={() => goToPreviousSlide()}>
           ❮
         </button>
