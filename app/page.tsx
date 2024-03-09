@@ -1,10 +1,9 @@
 import Carousel from "@/components/carousel";
-import Navbar from "@/components/navbar";
 import { Philosopher } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { SocialIcon } from "react-social-icons";
 import { Slide } from "@/models/website";
+import { Metadata } from "next";
 
 const philosopher = Philosopher({ weight: "400", subsets: ["latin"] });
 
@@ -58,34 +57,14 @@ const cards = [
   },
 ];
 
+export const metadata: Metadata = {
+  title: "Página Inicial | Ardósia do Vale",
+  description: "A Ardósia do Vale é uma empresa .....",
+};
+
 export default function Home() {
   return (
     <>
-      <header className="p-8 items-center flex md:h-48 h-36">
-        <div className="w-11/12">
-          <Image
-            alt="Logo Ardósia do Vale"
-            src={"/logo.png"}
-            width={300}
-            height={50}
-          ></Image>
-        </div>
-        <div className="md:flex md:gap-x-2 hidden">
-          <SocialIcon
-            href="https://www.facebook.com/ardosiadovale"
-            network="facebook"
-            style={{ height: 30, width: 30 }}
-            className="transition ease-out duration-300 hover:scale-125"
-          />
-          <SocialIcon
-            href="https://www.instagram.com/ardosiadovale/"
-            network="instagram"
-            style={{ height: 30, width: 30 }}
-            className="transition ease-out duration-300 hover:scale-125"
-          />
-        </div>
-      </header>
-      <Navbar />
       <Carousel slides={slides} />
       <div className="pr-5 pl-5 md:pr-20 md:pl-20">
         <section className="flex flex-wrap gap-6 w-full justify-center items-center mt-20">
@@ -130,35 +109,37 @@ export default function Home() {
           <p className="text-end text-sm">Sócia da Ardósia do Vale</p>
         </section>
 
-        <section>
-          <div className="flex gap-5 items-center">
-            <Image alt="Quem Somos" src="/quem_somos_principal-1038x460.jpg" width={50} height={50} className="rounded-full w-10 h-10"></Image>
-            <div className={philosopher.className + " text-xl"}>Quem Somos</div>
+        <section className="mt-10 w-full">
+          <div className="flex flex-wrap w-full justify-center items-center gap-10">
+            {slides.map(
+              (item, index) =>
+                index < 3 && (
+                  <div className="flex flex-col gap-y-4 w-72" key={index}>
+                    <div className="flex gap-5 items-center">
+                      <div className="w-10 h-10 relative">
+                        <Image
+                          alt={item.title}
+                          src={item.image}
+                          layout="fill"
+                          className="rounded-full object-cover"
+                        ></Image>
+                      </div>
+
+                      <div className={philosopher.className + " text-xl"}>
+                        {item.title}
+                      </div>
+                    </div>
+                    <div className="text-sm">
+                      <p>{item.text}</p>
+                    </div>
+                    <div className="text-sm text-[#e58b00]">
+                      <Link href={item.path}>Leia Mais</Link>
+                    </div>
+                  </div>
+                )
+            )}
           </div>
         </section>
-
-        {/* <div className="flex flex-wrap gap-6 w-full justify-center items-center mt-20">
-          {slides.map((item, index) => (
-            <Link key={index} href={item.path}>
-              <div className="flex flex-col w-48">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={474}
-                  height={342}
-                ></Image>
-                <p
-                  className={
-                    "text-xl text-center mt-2 hover:text-[#e58b00] " +
-                    philosopher.className
-                  }
-                >
-                  {item.title}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div> */}
       </div>
     </>
   );

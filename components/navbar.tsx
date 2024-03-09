@@ -1,55 +1,13 @@
 import React from "react";
 import { Bars3BottomRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
+import { MenuItem } from "@/models/website";
 
-interface MenuItem {
-  description: string;
-  path: string;
-  subItems?: MenuItem[];
+interface NavBarProps {
+  menu: MenuItem[];
 }
 
-const menu: MenuItem[] = [
-  {
-    description: "PÁGINA INICIAL",
-    path: "/",
-  },
-  {
-    description: "QUEM SOMOS",
-    path: "/quem-somos",
-  },
-  {
-    description: "PRODUTOS",
-    path: "/produtos",
-    subItems: [
-      {
-        description: "Residencial",
-        path: "/produtos/residencial",
-      },
-      {
-        description: "Jazigos",
-        path: "/produtos/jazigos",
-      },
-    ],
-  },
-  {
-    description: "PEDRA ARDÓSIA",
-    path: "/pedra-ardosia",
-  },
-  {
-    description: "TROMBUDO CENTRAL",
-    path: "/trombudo-central",
-  },
-  {
-    description: "MEIO AMBIENTE",
-    path: "/meio-ambiente",
-  },
-  {
-    description: "CONTATO",
-    path: "/contato",
-  },
-];
-
-export default function navbar() {
+export default function navbar({ menu }: NavBarProps) {
   return (
     <div className="navbar bg-base-100 border-gray-200 border-t-[1px] h-7">
       <div className="navbar">
@@ -57,12 +15,17 @@ export default function navbar() {
           <ul className="menu menu-horizontal px-1">
             {menu.map((item, index) =>
               item.subItems ? (
-                <li key={index} className="hover:text-[#e58b00]">
+                <li key={index}>
                   <details>
-                    <summary>{item.description}</summary>
+                    <summary className="hover:text-[#e58b00]">
+                      {item.description}
+                    </summary>
                     <ul className="p-2 z-[1]">
+                      <li key={-1} className="hover:text-[#e58b00]">
+                        <Link href={item.path}>Todos</Link>
+                      </li>
                       {item.subItems.map((subItem, subIndex) => (
-                        <li key={subIndex}>
+                        <li key={subIndex} className="hover:text-[#e58b00]">
                           <Link href={subItem.path}>{subItem.description}</Link>
                         </li>
                       ))}

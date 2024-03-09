@@ -4,3 +4,9 @@ export interface Slide {
   text: string;
   path: string;
 }
+
+export interface MenuItem {
+  description: string;
+  path: string;
+  subItems?: MenuItem[];
+}
