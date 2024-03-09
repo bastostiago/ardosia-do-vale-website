@@ -51,7 +51,7 @@ const menu: MenuItem[] = [
 
 export default function navbar() {
   return (
-    <div className="navbar bg-base-100 border-gray-200 border-t-[1px] h-0">
+    <div className="navbar bg-base-100 border-gray-200 border-t-[1px] h-7">
       <div className="navbar">
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal px-1">

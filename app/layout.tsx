@@ -24,7 +24,7 @@ export default function RootLayout({
         }
       >
         <div className="flex justify-center">
-          <main className="bg-white xl:w-9/12 2xl:w-7/12 w-11/12 md:mt-8 mt-4 shadow-md">
+          <main className="bg-white xl:w-9/12 2xl:w-8/12 w-11/12 md:mt-8 mt-4 shadow-md">
             {children}
           </main>
         </div>

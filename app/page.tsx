@@ -88,7 +88,7 @@ export default function Home() {
       <Navbar />
       <Carousel slides={slides} />
       <div className="pr-5 pl-5 md:pr-20 md:pl-20">
-        <div className="flex flex-wrap gap-6 w-full justify-center items-center mt-20">
+        <section className="flex flex-wrap gap-6 w-full justify-center items-center mt-20">
           {cards.map((item, index) => (
             <Link key={index} href={item.path}>
               <div className="flex flex-col w-48">
@@ -109,24 +109,33 @@ export default function Home() {
               </div>
             </Link>
           ))}
-        </div>
+        </section>
 
-        <div className="flex gap-6 w-full justify-center items-start mt-10">
-          <Image
-            src="/testimonial-icon.png"
-            width={25}
-            height={20}
-            alt="Testimonial"
-          />
+        <section>
+          <div className="flex gap-6 w-full justify-center items-start mt-10">
+            <Image
+              src="/testimonial-icon.png"
+              width={25}
+              height={20}
+              alt="Testimonial"
+            />
 
-          <div className="bg-gray-100 border-gray-200 border-2 p-8 shadow-inner rounded-xl text-3xl italic overflow-hidden">
-            Eu gosto de saber onde o cliente vai usar o meu produto pra poder
-            ajudar a fazer a melhor escolha, não quero que ele simplesmente
-            compre e vá embora, quero ajudar a resolver o problema dele.
+            <div className="bg-gray-100 border-gray-200 border-2 p-8 shadow-inner rounded-xl text-3xl italic overflow-hidden">
+              Eu gosto de saber onde o cliente vai usar o meu produto pra poder
+              ajudar a fazer a melhor escolha, não quero que ele simplesmente
+              compre e vá embora, quero ajudar a resolver o problema dele.
+            </div>
           </div>
-        </div>
-        <p className="text-end text-sm font-bold mt-3">Ângela Fachini</p>
-        <p className="text-end text-sm">Sócia da Ardósia do Vale</p>
+          <p className="text-end text-sm font-bold mt-3">Ângela Fachini</p>
+          <p className="text-end text-sm">Sócia da Ardósia do Vale</p>
+        </section>
+
+        <section>
+          <div className="flex gap-5 items-center">
+            <Image alt="Quem Somos" src="/quem_somos_principal-1038x460.jpg" width={50} height={50} className="rounded-full w-10 h-10"></Image>
+            <div className={philosopher.className + " text-xl"}>Quem Somos</div>
+          </div>
+        </section>
 
         {/* <div className="flex flex-wrap gap-6 w-full justify-center items-center mt-20">
           {slides.map((item, index) => (
