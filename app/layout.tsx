@@ -63,6 +63,7 @@ export default function RootLayout({
           pt_sans.className +
           " bg-[url('/body-bg.png')] min-h-screen text-gray-500"
         }
+        id="body"
       >
         <div className="flex justify-center">
           <main className="bg-white xl:w-9/12 2xl:w-8/12 w-11/12 md:mt-8 mt-4 mb-4 md:mb-8 shadow-md">

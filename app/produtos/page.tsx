@@ -28,10 +28,10 @@ export default function Produtos() {
         <p className="ml-4">
           <ul className="list-disc text-[#e58b00] flex flex-col gap-y-4 font-semibold">
             <li>
-              <Link href="/residencial">Residencial</Link>
+              <Link href="/produtos/residencial">Residencial</Link>
             </li>
             <li>
-              <Link href="/jazigos">Jazigos</Link>
+              <Link href="/produtos/jazigos">Jazigos</Link>
             </li>
           </ul>
         </p>

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
 import { Bars3BottomRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { MenuItem } from "@/models/website";
@@ -8,6 +10,17 @@ interface NavBarProps {
 }
 
 export default function navbar({ menu }: NavBarProps) {
+  const handleClick = () => {
+    const elem = document.getElementById("parent");
+    const elem2 = document.activeElement;
+    if (elem2) {
+      elem?.blur();
+    }
+    if (elem) {
+      elem.open = false;
+    }
+  };
+
   return (
     <div className="navbar bg-base-100 border-gray-200 border-t-[1px] h-7">
       <div className="navbar">
@@ -16,16 +29,24 @@ export default function navbar({ menu }: NavBarProps) {
             {menu.map((item, index) =>
               item.subItems ? (
                 <li key={index}>
-                  <details>
+                  <details id="parent">
                     <summary className="hover:text-[#e58b00]">
                       {item.description}
                     </summary>
                     <ul className="p-2 z-[1]">
-                      <li key={-1} className="hover:text-[#e58b00]">
+                      <li
+                        key={-1}
+                        className="hover:text-[#e58b00]"
+                        onClick={handleClick}
+                      >
                         <Link href={item.path}>Todos</Link>
                       </li>
                       {item.subItems.map((subItem, subIndex) => (
-                        <li key={subIndex} className="hover:text-[#e58b00]">
+                        <li
+                          key={subIndex}
+                          className="hover:text-[#e58b00]"
+                          onClick={handleClick}
+                        >
                           <Link href={subItem.path}>{subItem.description}</Link>
                         </li>
                       ))}
@@ -53,11 +74,18 @@ export default function navbar({ menu }: NavBarProps) {
             {menu.map((item, index) =>
               item.subItems ? (
                 <li key={index}>
-                  <details>
+                  <details id="parent">
                     <summary>{item.description}</summary>
                     <ul className="p-2">
+                      <li
+                        key={-1}
+                        className="hover:text-[#e58b00]"
+                        onClick={handleClick}
+                      >
+                        <Link href={item.path}>Todos</Link>
+                      </li>
                       {item.subItems.map((subItem, subIndex) => (
-                        <li key={subIndex}>
+                        <li key={subIndex} onClick={handleClick}>
                           <Link href={subItem.path}>{subItem.description}</Link>
                         </li>
                       ))}
