@@ -17,6 +17,7 @@ export default function navbar({ menu }: NavBarProps) {
       elem?.blur();
     }
     if (elem) {
+      //@ts-expect-error
       elem.open = false;
     }
   };
